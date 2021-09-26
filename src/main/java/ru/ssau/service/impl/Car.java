@@ -5,20 +5,26 @@ import ru.ssau.exception.ModelPriceOutOfBoundsException;
 import ru.ssau.exception.NoSuchModelNameException;
 import ru.ssau.service.Vehicle;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
 
-public class Car implements Vehicle {
+public class Car implements Vehicle, Serializable {
 
     private String brand;
     private Model[] models;
-    private final int initArraySize;
 
-    public Car(String brand, int arraySize) {
+    public Car(String brand, int size) {
         this.brand = brand;
-        this.initArraySize = arraySize;
-        this.models = new Model[arraySize];
+        this.models = new Model[size];
+        for (int i = 0; i < size; i++) {
+            try {
+                addModel("name" + i, (double) (i + 1));
+            } catch (NoSuchModelNameException | DuplicateModelNameException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     @Override
@@ -94,9 +100,8 @@ public class Car implements Vehicle {
         if (indexOfFreeSlot.isPresent()) {
             models[indexOfFreeSlot.get()] = new Model(name, price);
         } else {
-            Model[] tempModels = Arrays.copyOf(models, models.length + 1);
-            tempModels[models.length] = new Model(name, price);
-            models = tempModels;
+            models = Arrays.copyOf(models, models.length + 1);
+            models[models.length - 1] = new Model(name, price);
         }
     }
 
@@ -106,11 +111,7 @@ public class Car implements Vehicle {
             throw new NoSuchModelNameException();
         }
         checkPrice(price);
-        int arraySize = initArraySize;
-        if (models.length - 1 >= initArraySize) {
-            arraySize = models.length - 1;
-        }
-        Model[] resultArray = new Model[arraySize];
+        Model[] resultArray = new Model[models.length - 1];
         Integer elementIndex = null;
         for (int i = 0; i < models.length; i++) {
             Model model = models[i];
@@ -171,7 +172,7 @@ public class Car implements Vehicle {
         }
     }
 
-    private class Model {
+    private class Model implements Serializable{
         private String name;
         private Double price;
 
