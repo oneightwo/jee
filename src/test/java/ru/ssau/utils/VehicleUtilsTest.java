@@ -31,12 +31,12 @@ public class VehicleUtilsTest {
     public void init() throws DuplicateModelNameException, NoSuchModelNameException {
         System.setOut(new PrintStream(outContent));
 
-        car = new Car(BRAND, 3);
+        car = new Car(BRAND, 0);
         car.addModel(MODEL_ONE, 1.0);
         car.addModel(MODEL_TWO, 2.0);
         car.addModel(MODEL_THREE, 3.0);
 
-        motorcycle = new Motorcycle(BRAND);
+        motorcycle = new Motorcycle(BRAND, 0);
         motorcycle.addModel(MODEL_ONE, 1.0);
         motorcycle.addModel(MODEL_TWO, 2.0);
         motorcycle.addModel(MODEL_THREE, 3.0);

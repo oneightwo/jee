@@ -20,8 +20,16 @@ public class MotorcycleTest {
     private static final String MODEL_FOUR = "model_four";
 
     @Test
+    public void testCreateModelsWhenCreateMotorcycle() {
+        Motorcycle motorcycle = new Motorcycle(BRAND_ONE, 3);
+        assertEquals(3, motorcycle.getModelSize());
+        assertEquals(3, motorcycle.getModelNames().length);
+        assertEquals(3, motorcycle.getModelPrices().length);
+    }
+    
+    @Test
     public void testSetAndGetName() {
-        Motorcycle motorcycle = new Motorcycle(BRAND_ONE);
+        Motorcycle motorcycle = new Motorcycle(BRAND_ONE, 0);
         assertEquals(BRAND_ONE, motorcycle.getBrand());
 
         motorcycle.setBrand(BRAND_TWO);
@@ -30,7 +38,7 @@ public class MotorcycleTest {
 
     @Test
     public void testAddModels() throws DuplicateModelNameException, NoSuchModelNameException {
-        Motorcycle motorcycle = new Motorcycle(BRAND_ONE);
+        Motorcycle motorcycle = new Motorcycle(BRAND_ONE, 0);
         motorcycle.addModel(MODEL_ONE, 1.0);
         motorcycle.addModel(MODEL_TWO, 2.0);
         motorcycle.addModel(MODEL_THREE, 3.0);
@@ -38,21 +46,21 @@ public class MotorcycleTest {
 
     @Test
     public void testAddModelsWhenDuplicateModelName() throws DuplicateModelNameException, NoSuchModelNameException {
-        Motorcycle motorcycle = new Motorcycle(BRAND_ONE);
+        Motorcycle motorcycle = new Motorcycle(BRAND_ONE, 0);
         motorcycle.addModel(MODEL_ONE, 1.0);
         assertThrows(DuplicateModelNameException.class, () -> motorcycle.addModel(MODEL_ONE, 2.0));
     }
 
     @Test
     public void testAddModelsWhenNoSuchModelName() throws DuplicateModelNameException, NoSuchModelNameException {
-        Motorcycle motorcycle = new Motorcycle(BRAND_ONE);
+        Motorcycle motorcycle = new Motorcycle(BRAND_ONE, 0);
         motorcycle.addModel(MODEL_ONE, 1.0);
         assertThrows(NoSuchModelNameException.class, () -> motorcycle.addModel(null, 2.0));
     }
 
     @Test
     public void testAddModelsWhenModelPriceOutOfBounds() throws DuplicateModelNameException, NoSuchModelNameException {
-        Motorcycle motorcycle = new Motorcycle(BRAND_ONE);
+        Motorcycle motorcycle = new Motorcycle(BRAND_ONE, 0);
         motorcycle.addModel(MODEL_ONE, 1.0);
         assertThrows(ModelPriceOutOfBoundsException.class, () -> motorcycle.addModel(MODEL_TWO, 0.0));
         assertThrows(ModelPriceOutOfBoundsException.class, () -> motorcycle.addModel(MODEL_TWO, null));
@@ -60,7 +68,7 @@ public class MotorcycleTest {
 
     @Test
     public void testGetModelNames() throws DuplicateModelNameException, NoSuchModelNameException {
-        Motorcycle motorcycle = new Motorcycle(BRAND_ONE);
+        Motorcycle motorcycle = new Motorcycle(BRAND_ONE, 0);
         motorcycle.addModel(MODEL_ONE, 1.0);
         motorcycle.addModel(MODEL_TWO, 2.0);
         motorcycle.addModel(MODEL_THREE, 3.0);
@@ -70,7 +78,7 @@ public class MotorcycleTest {
 
     @Test
     public void testGetModelPrices() throws DuplicateModelNameException, NoSuchModelNameException {
-        Motorcycle motorcycle = new Motorcycle(BRAND_ONE);
+        Motorcycle motorcycle = new Motorcycle(BRAND_ONE, 0);
         motorcycle.addModel(MODEL_ONE, 1.0);
         motorcycle.addModel(MODEL_TWO, 2.0);
         motorcycle.addModel(MODEL_THREE, 3.0);
@@ -80,7 +88,7 @@ public class MotorcycleTest {
 
     @Test
     public void testGetModelSize() throws DuplicateModelNameException, NoSuchModelNameException {
-        Motorcycle motorcycle = new Motorcycle(BRAND_ONE);
+        Motorcycle motorcycle = new Motorcycle(BRAND_ONE, 0);
         motorcycle.addModel(MODEL_ONE, 1.0);
         motorcycle.addModel(MODEL_TWO, 2.0);
         motorcycle.addModel(MODEL_THREE, 3.0);
@@ -90,7 +98,7 @@ public class MotorcycleTest {
 
     @Test
     public void testGetPriceByName() throws DuplicateModelNameException, NoSuchModelNameException {
-        Motorcycle motorcycle = new Motorcycle(BRAND_ONE);
+        Motorcycle motorcycle = new Motorcycle(BRAND_ONE, 0);
         motorcycle.addModel(MODEL_ONE, 1.0);
         motorcycle.addModel(MODEL_TWO, 2.0);
         motorcycle.addModel(MODEL_THREE, 3.0);
@@ -100,7 +108,7 @@ public class MotorcycleTest {
 
     @Test
     public void testGetPriceByNameWhenNoSuchModelName() throws DuplicateModelNameException, NoSuchModelNameException {
-        Motorcycle motorcycle = new Motorcycle(BRAND_ONE);
+        Motorcycle motorcycle = new Motorcycle(BRAND_ONE, 0);
         motorcycle.addModel(MODEL_ONE, 1.0);
         motorcycle.addModel(MODEL_TWO, 2.0);
         motorcycle.addModel(MODEL_THREE, 3.0);
@@ -111,7 +119,7 @@ public class MotorcycleTest {
 
     @Test
     public void testUpdatePriceByName() throws DuplicateModelNameException, NoSuchModelNameException {
-        Motorcycle motorcycle = new Motorcycle(BRAND_ONE);
+        Motorcycle motorcycle = new Motorcycle(BRAND_ONE, 0);
         motorcycle.addModel(MODEL_ONE, 1.0);
         motorcycle.addModel(MODEL_TWO, 2.0);
 
@@ -120,7 +128,7 @@ public class MotorcycleTest {
 
     @Test
     public void testUpdatePriceByNameWhenNoSuchModelName() throws DuplicateModelNameException, NoSuchModelNameException {
-        Motorcycle motorcycle = new Motorcycle(BRAND_ONE);
+        Motorcycle motorcycle = new Motorcycle(BRAND_ONE, 0);
         motorcycle.addModel(MODEL_ONE, 1.0);
         motorcycle.addModel(MODEL_TWO, 2.0);
 
@@ -130,7 +138,7 @@ public class MotorcycleTest {
 
     @Test
     public void testUpdatePriceByNameWhenModelPriceOutOfBounds() throws DuplicateModelNameException, NoSuchModelNameException {
-        Motorcycle motorcycle = new Motorcycle(BRAND_ONE);
+        Motorcycle motorcycle = new Motorcycle(BRAND_ONE, 0);
         motorcycle.addModel(MODEL_ONE, 1.0);
         motorcycle.addModel(MODEL_TWO, 2.0);
 
@@ -140,7 +148,7 @@ public class MotorcycleTest {
 
     @Test
     public void testUpdateName() throws DuplicateModelNameException, NoSuchModelNameException {
-        Motorcycle motorcycle = new Motorcycle(BRAND_ONE);
+        Motorcycle motorcycle = new Motorcycle(BRAND_ONE, 0);
         motorcycle.addModel(MODEL_ONE, 1.0);
         motorcycle.addModel(MODEL_TWO, 2.0);
 
@@ -152,7 +160,7 @@ public class MotorcycleTest {
 
     @Test
     public void testUpdateNameWhenNoSuchModelName() throws DuplicateModelNameException, NoSuchModelNameException {
-        Motorcycle motorcycle = new Motorcycle(BRAND_ONE);
+        Motorcycle motorcycle = new Motorcycle(BRAND_ONE, 0);
         motorcycle.addModel(MODEL_ONE, 1.0);
         motorcycle.addModel(MODEL_TWO, 2.0);
 
@@ -163,7 +171,7 @@ public class MotorcycleTest {
 
     @Test
     public void testUpdateNameWhenDuplicateModelName() throws DuplicateModelNameException, NoSuchModelNameException {
-        Motorcycle motorcycle = new Motorcycle(BRAND_ONE);
+        Motorcycle motorcycle = new Motorcycle(BRAND_ONE, 0);
         motorcycle.addModel(MODEL_ONE, 1.0);
         motorcycle.addModel(MODEL_TWO, 2.0);
 
@@ -172,7 +180,7 @@ public class MotorcycleTest {
 
     @Test
     public void testDeleteModelFromStart() throws NoSuchModelNameException, DuplicateModelNameException {
-        Motorcycle motorcycle = new Motorcycle(BRAND_ONE);
+        Motorcycle motorcycle = new Motorcycle(BRAND_ONE, 0);
         motorcycle.addModel(MODEL_ONE, 1.0);
         motorcycle.addModel(MODEL_TWO, 2.0);
         motorcycle.addModel(MODEL_THREE, 3.0);
@@ -185,7 +193,7 @@ public class MotorcycleTest {
 
     @Test
     public void testDeleteModelFromCenter() throws NoSuchModelNameException, DuplicateModelNameException {
-        Motorcycle motorcycle = new Motorcycle(BRAND_ONE);
+        Motorcycle motorcycle = new Motorcycle(BRAND_ONE, 0);
         motorcycle.addModel(MODEL_ONE, 1.0);
         motorcycle.addModel(MODEL_TWO, 2.0);
         motorcycle.addModel(MODEL_THREE, 3.0);
@@ -198,7 +206,7 @@ public class MotorcycleTest {
 
     @Test
     public void testDeleteModelFromEnd() throws NoSuchModelNameException, DuplicateModelNameException {
-        Motorcycle motorcycle = new Motorcycle(BRAND_ONE);
+        Motorcycle motorcycle = new Motorcycle(BRAND_ONE, 0);
         motorcycle.addModel(MODEL_ONE, 1.0);
         motorcycle.addModel(MODEL_TWO, 2.0);
         motorcycle.addModel(MODEL_THREE, 3.0);
@@ -211,7 +219,7 @@ public class MotorcycleTest {
 
     @Test
     public void testDeleteModelWhenNoSuchModelName() throws NoSuchModelNameException, DuplicateModelNameException {
-        Motorcycle motorcycle = new Motorcycle(BRAND_ONE);
+        Motorcycle motorcycle = new Motorcycle(BRAND_ONE, 0);
         motorcycle.addModel(MODEL_ONE, 1.0);
         motorcycle.addModel(MODEL_TWO, 2.0);
         motorcycle.addModel(MODEL_THREE, 3.0);
@@ -222,7 +230,7 @@ public class MotorcycleTest {
 
     @Test
     public void testDeleteModelWhenModelPriceOutOfBounds() throws NoSuchModelNameException, DuplicateModelNameException {
-        Motorcycle motorcycle = new Motorcycle(BRAND_ONE);
+        Motorcycle motorcycle = new Motorcycle(BRAND_ONE, 0);
         motorcycle.addModel(MODEL_ONE, 1.0);
         motorcycle.addModel(MODEL_TWO, 2.0);
         motorcycle.addModel(MODEL_THREE, 3.0);
@@ -233,7 +241,7 @@ public class MotorcycleTest {
 
     @Test
     public void testToString() throws NoSuchModelNameException, DuplicateModelNameException {
-        Motorcycle motorcycle = new Motorcycle(BRAND_ONE);
+        Motorcycle motorcycle = new Motorcycle(BRAND_ONE, 0);
         motorcycle.addModel(MODEL_ONE, 1.0);
         motorcycle.addModel(MODEL_TWO, 2.0);
         motorcycle.addModel(MODEL_THREE, 3.0);

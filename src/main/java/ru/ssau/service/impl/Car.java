@@ -13,12 +13,17 @@ public class Car implements Vehicle {
 
     private String brand;
     private Model[] models;
-    private final int initArraySize;
 
-    public Car(String brand, int arraySize) {
+    public Car(String brand, int size) {
         this.brand = brand;
-        this.initArraySize = arraySize;
-        this.models = new Model[arraySize];
+        this.models = new Model[size];
+        for (int i = 0; i < size; i++) {
+            try {
+                addModel("name" + i, (double) (i + 1));
+            } catch (NoSuchModelNameException | DuplicateModelNameException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     @Override
@@ -94,9 +99,8 @@ public class Car implements Vehicle {
         if (indexOfFreeSlot.isPresent()) {
             models[indexOfFreeSlot.get()] = new Model(name, price);
         } else {
-            Model[] tempModels = Arrays.copyOf(models, models.length + 1);
-            tempModels[models.length] = new Model(name, price);
-            models = tempModels;
+            models = Arrays.copyOf(models, models.length + 1);
+            models[models.length - 1] = new Model(name, price);
         }
     }
 
@@ -106,11 +110,7 @@ public class Car implements Vehicle {
             throw new NoSuchModelNameException();
         }
         checkPrice(price);
-        int arraySize = initArraySize;
-        if (models.length - 1 >= initArraySize) {
-            arraySize = models.length - 1;
-        }
-        Model[] resultArray = new Model[arraySize];
+        Model[] resultArray = new Model[models.length - 1];
         Integer elementIndex = null;
         for (int i = 0; i < models.length; i++) {
             Model model = models[i];

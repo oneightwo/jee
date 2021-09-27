@@ -20,8 +20,16 @@ public class CarTest {
     private static final String MODEL_FOUR = "model_four";
 
     @Test
+    public void testCreateModelsWhenCreateMotorcycle() {
+        Car car = new Car(BRAND_ONE, 3);
+        assertEquals(3, car.getModelSize());
+        assertEquals(3, car.getModelNames().length);
+        assertEquals(3, car.getModelPrices().length);
+    }
+    
+    @Test
     public void testSetAndGetName() {
-        Car car = new Car(BRAND_ONE, 4);
+        Car car = new Car(BRAND_ONE, 0);
         assertEquals(BRAND_ONE, car.getBrand());
 
         car.setBrand(BRAND_TWO);
@@ -30,7 +38,7 @@ public class CarTest {
 
     @Test
     public void testAddModels() throws DuplicateModelNameException, NoSuchModelNameException {
-        Car car = new Car(BRAND_ONE, 2);
+        Car car = new Car(BRAND_ONE, 0);
         car.addModel(MODEL_ONE, 1.0);
         car.addModel(MODEL_TWO, 2.0);
         car.addModel(MODEL_THREE, 3.0);
@@ -38,21 +46,21 @@ public class CarTest {
 
     @Test
     public void testAddModelsWhenDuplicateModelName() throws DuplicateModelNameException, NoSuchModelNameException {
-        Car car = new Car(BRAND_ONE, 2);
+        Car car = new Car(BRAND_ONE, 0);
         car.addModel(MODEL_ONE, 1.0);
         assertThrows(DuplicateModelNameException.class, () -> car.addModel(MODEL_ONE, 2.0));
     }
 
     @Test
     public void testAddModelsWhenNoSuchModelName() throws DuplicateModelNameException, NoSuchModelNameException {
-        Car car = new Car(BRAND_ONE, 2);
+        Car car = new Car(BRAND_ONE, 0);
         car.addModel(MODEL_ONE, 1.0);
         assertThrows(NoSuchModelNameException.class, () -> car.addModel(null, 2.0));
     }
 
     @Test
     public void testAddModelsWhenModelPriceOutOfBounds() throws DuplicateModelNameException, NoSuchModelNameException {
-        Car car = new Car(BRAND_ONE, 2);
+        Car car = new Car(BRAND_ONE, 0);
         car.addModel(MODEL_ONE, 1.0);
         assertThrows(ModelPriceOutOfBoundsException.class, () -> car.addModel(MODEL_TWO, 0.0));
         assertThrows(ModelPriceOutOfBoundsException.class, () -> car.addModel(MODEL_TWO, null));
@@ -60,7 +68,7 @@ public class CarTest {
 
     @Test
     public void testGetModelNames() throws DuplicateModelNameException, NoSuchModelNameException {
-        Car car = new Car(BRAND_ONE, 2);
+        Car car = new Car(BRAND_ONE, 0);
         car.addModel(MODEL_ONE, 1.0);
         car.addModel(MODEL_TWO, 2.0);
         car.addModel(MODEL_THREE, 3.0);
@@ -70,7 +78,7 @@ public class CarTest {
 
     @Test
     public void testGetModelPrices() throws DuplicateModelNameException, NoSuchModelNameException {
-        Car car = new Car(BRAND_ONE, 2);
+        Car car = new Car(BRAND_ONE, 0);
         car.addModel(MODEL_ONE, 1.0);
         car.addModel(MODEL_TWO, 2.0);
         car.addModel(MODEL_THREE, 3.0);
@@ -80,7 +88,7 @@ public class CarTest {
 
     @Test
     public void testGetModelSize() throws DuplicateModelNameException, NoSuchModelNameException {
-        Car car = new Car(BRAND_ONE, 2);
+        Car car = new Car(BRAND_ONE, 0);
         car.addModel(MODEL_ONE, 1.0);
         car.addModel(MODEL_TWO, 2.0);
         car.addModel(MODEL_THREE, 3.0);
@@ -90,7 +98,7 @@ public class CarTest {
 
     @Test
     public void testGetPriceByName() throws DuplicateModelNameException, NoSuchModelNameException {
-        Car car = new Car(BRAND_ONE, 2);
+        Car car = new Car(BRAND_ONE, 0);
         car.addModel(MODEL_ONE, 1.0);
         car.addModel(MODEL_TWO, 2.0);
         car.addModel(MODEL_THREE, 3.0);
@@ -100,7 +108,7 @@ public class CarTest {
 
     @Test
     public void testGetPriceByNameWhenNoSuchModelName() throws DuplicateModelNameException, NoSuchModelNameException {
-        Car car = new Car(BRAND_ONE, 2);
+        Car car = new Car(BRAND_ONE, 0);
         car.addModel(MODEL_ONE, 1.0);
         car.addModel(MODEL_TWO, 2.0);
         car.addModel(MODEL_THREE, 3.0);
@@ -111,7 +119,7 @@ public class CarTest {
 
     @Test
     public void testUpdatePriceByName() throws DuplicateModelNameException, NoSuchModelNameException {
-        Car car = new Car(BRAND_ONE, 2);
+        Car car = new Car(BRAND_ONE, 0);
         car.addModel(MODEL_ONE, 1.0);
         car.addModel(MODEL_TWO, 2.0);
 
@@ -120,7 +128,7 @@ public class CarTest {
 
     @Test
     public void testUpdatePriceByNameWhenNoSuchModelName() throws DuplicateModelNameException, NoSuchModelNameException {
-        Car car = new Car(BRAND_ONE, 2);
+        Car car = new Car(BRAND_ONE, 0);
         car.addModel(MODEL_ONE, 1.0);
         car.addModel(MODEL_TWO, 2.0);
 
@@ -130,7 +138,7 @@ public class CarTest {
 
     @Test
     public void testUpdatePriceByNameWhenModelPriceOutOfBounds() throws DuplicateModelNameException, NoSuchModelNameException {
-        Car car = new Car(BRAND_ONE, 2);
+        Car car = new Car(BRAND_ONE, 0);
         car.addModel(MODEL_ONE, 1.0);
         car.addModel(MODEL_TWO, 2.0);
 
@@ -140,7 +148,7 @@ public class CarTest {
 
     @Test
     public void testUpdateName() throws DuplicateModelNameException, NoSuchModelNameException {
-        Car car = new Car(BRAND_ONE, 2);
+        Car car = new Car(BRAND_ONE, 0);
         car.addModel(MODEL_ONE, 1.0);
         car.addModel(MODEL_TWO, 2.0);
 
@@ -152,7 +160,7 @@ public class CarTest {
 
     @Test
     public void testUpdateNameWhenNoSuchModelName() throws DuplicateModelNameException, NoSuchModelNameException {
-        Car car = new Car(BRAND_ONE, 2);
+        Car car = new Car(BRAND_ONE, 0);
         car.addModel(MODEL_ONE, 1.0);
         car.addModel(MODEL_TWO, 2.0);
 
@@ -163,7 +171,7 @@ public class CarTest {
 
     @Test
     public void testUpdateNameWhenDuplicateModelName() throws DuplicateModelNameException, NoSuchModelNameException {
-        Car car = new Car(BRAND_ONE, 2);
+        Car car = new Car(BRAND_ONE, 0);
         car.addModel(MODEL_ONE, 1.0);
         car.addModel(MODEL_TWO, 2.0);
 
@@ -172,7 +180,7 @@ public class CarTest {
 
     @Test
     public void testDeleteModelFromStart() throws NoSuchModelNameException, DuplicateModelNameException {
-        Car car = new Car(BRAND_ONE, 2);
+        Car car = new Car(BRAND_ONE, 0);
         car.addModel(MODEL_ONE, 1.0);
         car.addModel(MODEL_TWO, 2.0);
         car.addModel(MODEL_THREE, 3.0);
@@ -185,7 +193,7 @@ public class CarTest {
 
     @Test
     public void testDeleteModelFromCenter() throws NoSuchModelNameException, DuplicateModelNameException {
-        Car car = new Car(BRAND_ONE, 2);
+        Car car = new Car(BRAND_ONE, 0);
         car.addModel(MODEL_ONE, 1.0);
         car.addModel(MODEL_TWO, 2.0);
         car.addModel(MODEL_THREE, 3.0);
@@ -198,7 +206,7 @@ public class CarTest {
 
     @Test
     public void testDeleteModelFromEnd() throws NoSuchModelNameException, DuplicateModelNameException {
-        Car car = new Car(BRAND_ONE, 2);
+        Car car = new Car(BRAND_ONE, 0);
         car.addModel(MODEL_ONE, 1.0);
         car.addModel(MODEL_TWO, 2.0);
         car.addModel(MODEL_THREE, 3.0);
@@ -211,7 +219,7 @@ public class CarTest {
 
     @Test
     public void testDeleteModelWhenNoSuchModelName() throws NoSuchModelNameException, DuplicateModelNameException {
-        Car car = new Car(BRAND_ONE, 2);
+        Car car = new Car(BRAND_ONE, 0);
         car.addModel(MODEL_ONE, 1.0);
         car.addModel(MODEL_TWO, 2.0);
         car.addModel(MODEL_THREE, 3.0);
@@ -222,7 +230,7 @@ public class CarTest {
 
     @Test
     public void testDeleteModelWhenModelPriceOutOfBounds() throws NoSuchModelNameException, DuplicateModelNameException {
-        Car car = new Car(BRAND_ONE, 2);
+        Car car = new Car(BRAND_ONE, 0);
         car.addModel(MODEL_ONE, 1.0);
         car.addModel(MODEL_TWO, 2.0);
         car.addModel(MODEL_THREE, 3.0);
@@ -233,7 +241,7 @@ public class CarTest {
 
     @Test
     public void testToString() throws NoSuchModelNameException, DuplicateModelNameException {
-        Car car = new Car(BRAND_ONE, 2);
+        Car car = new Car(BRAND_ONE, 0);
         car.addModel(MODEL_ONE, 1.0);
         car.addModel(MODEL_TWO, 2.0);
         car.addModel(MODEL_THREE, 3.0);

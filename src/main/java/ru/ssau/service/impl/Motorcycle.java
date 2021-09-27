@@ -12,7 +12,7 @@ import java.util.Optional;
 public class Motorcycle implements Vehicle {
 
     private String brand;
-    private int size = 0;
+    private int size;
     private final Model head = new Model();
 
     {
@@ -20,8 +20,15 @@ public class Motorcycle implements Vehicle {
         head.next = head;
     }
 
-    public Motorcycle(String brand) {
+    public Motorcycle(String brand, int size) {
         this.brand = brand;
+        for (int i = 0; i < size; i++) {
+            try {
+                addModel("name" + i, (double) (i + 1));
+            } catch (NoSuchModelNameException | DuplicateModelNameException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     @Override
@@ -151,7 +158,7 @@ public class Motorcycle implements Vehicle {
         }
         Model model = head.next;
         for (int i = 0; i < size; i++) {
-            if (model.name.equals(name)) {
+            if (Objects.nonNull(model.name) && model.name.equals(name)) {
                 return Optional.of(model);
             }
             model = model.next;
