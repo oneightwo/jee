@@ -58,14 +58,6 @@ public class CarTest {
     }
 
     @Test
-    public void testCreateModelsWhenCreateMotorcycle() {
-        Car car = new Car(BRAND_ONE, 3);
-        assertEquals(3, car.getModelSize());
-        assertEquals(3, car.getModelNames().length);
-        assertEquals(3, car.getModelPrices().length);
-    }
-
-    @Test
     public void testAddModels() throws DuplicateModelNameException, NoSuchModelNameException {
         Car car = new Car(BRAND_ONE, 0);
         car.addModel(MODEL_ONE, 1.0);
