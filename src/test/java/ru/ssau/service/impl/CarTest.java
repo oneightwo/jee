@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Arrays;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -39,6 +40,14 @@ public class CarTest {
         file = new File(parentFile, TEMP_FILE_TXT);
     }
 
+    @Test
+    public void testCreateModelsWhenCreateMotorcycle() {
+        Car car = new Car(BRAND_ONE, 3);
+        assertEquals(3, car.getModelSize());
+        assertEquals(3, car.getModelNames().length);
+        assertEquals(3, car.getModelPrices().length);
+    }
+    
     @Test
     public void testSetAndGetName() {
         Car car = new Car(BRAND_ONE, 0);
@@ -144,6 +153,7 @@ public class CarTest {
         car.addModel(MODEL_TWO, 2.0);
 
         car.updatePriceByName(MODEL_ONE, 3.0);
+        assertEquals(car.getPriceByName(MODEL_ONE), 3.0);
     }
 
     @Test
