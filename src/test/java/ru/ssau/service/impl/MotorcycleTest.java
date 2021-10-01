@@ -144,6 +144,7 @@ public class MotorcycleTest {
         motorcycle.addModel(MODEL_TWO, 2.0);
 
         motorcycle.updatePriceByName(MODEL_ONE, 3.0);
+        assertThrows(DuplicateModelNameException.class, () -> motorcycle.updateName(MODEL_TWO, MODEL_ONE));
     }
 
     @Test

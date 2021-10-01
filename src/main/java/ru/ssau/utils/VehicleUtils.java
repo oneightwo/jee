@@ -103,17 +103,17 @@ public class VehicleUtils {
     }
 
     public static void writeVehicle(Vehicle vehicle, Writer writer) {
-        try (PrintWriter printWriter = new PrintWriter(writer)) {
-            printWriter.println(vehicle.getClass().getName());
-            printWriter.println(vehicle.getBrand());
-            printWriter.println(vehicle.getModelSize());
-            String[] modelNames = vehicle.getModelNames();
-            Double[] modelPrices = vehicle.getModelPrices();
-            for (int i = 0; i < modelNames.length; i++) {
-                printWriter.println(modelNames[i]);
-                printWriter.println(modelPrices[i]);
-            }
+        PrintWriter printWriter = new PrintWriter(writer);
+        printWriter.println(vehicle.getClass().getName());
+        printWriter.println(vehicle.getBrand());
+        printWriter.println(vehicle.getModelSize());
+        String[] modelNames = vehicle.getModelNames();
+        Double[] modelPrices = vehicle.getModelPrices();
+        for (int i = 0; i < modelNames.length; i++) {
+            printWriter.println(modelNames[i]);
+            printWriter.println(modelPrices[i]);
         }
+        printWriter.flush();
     }
 
     public static Vehicle readVehicle(Reader reader) {

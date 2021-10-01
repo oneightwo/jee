@@ -195,7 +195,7 @@ public class CarTest {
         car.addModel(MODEL_ONE, 1.0);
         car.addModel(MODEL_TWO, 2.0);
 
-        assertThrows(DuplicateModelNameException.class, () -> car.updateName(MODEL_ONE, MODEL_TWO));
+        assertThrows(DuplicateModelNameException.class, () -> car.updateName(MODEL_TWO, MODEL_ONE));
     }
 
     @Test
