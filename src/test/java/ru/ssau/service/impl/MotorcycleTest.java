@@ -124,6 +124,7 @@ public class MotorcycleTest {
         motorcycle.addModel(MODEL_TWO, 2.0);
 
         motorcycle.updatePriceByName(MODEL_ONE, 3.0);
+        assertEquals(motorcycle.getPriceByName(MODEL_ONE), 3.0);
     }
 
     @Test

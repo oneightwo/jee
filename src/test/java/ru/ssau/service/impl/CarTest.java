@@ -6,6 +6,7 @@ import ru.ssau.exception.ModelPriceOutOfBoundsException;
 import ru.ssau.exception.NoSuchModelNameException;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -124,6 +125,7 @@ public class CarTest {
         car.addModel(MODEL_TWO, 2.0);
 
         car.updatePriceByName(MODEL_ONE, 3.0);
+        assertEquals(car.getPriceByName(MODEL_ONE), 3.0);
     }
 
     @Test
