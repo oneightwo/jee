@@ -123,12 +123,14 @@ public class VehicleUtils {
             if (optionalVehicle.isPresent()) {
                 vehicle = optionalVehicle.get();
                 vehicle.setBrand(bufferedReader.readLine());
-                int modelSize = Integer.parseInt(bufferedReader.readLine());
-                for (int i = 0; i < modelSize; i++) {
-                    try {
-                        vehicle.addModel(bufferedReader.readLine(), Double.parseDouble(bufferedReader.readLine()));
-                    } catch (DuplicateModelNameException | NoSuchModelNameException e) {
-                        System.out.println(e.getMessage());
+                String modelSize = bufferedReader.readLine();
+                if (Objects.nonNull(modelSize)) {
+                    for (int i = 0; i < Integer.parseInt(modelSize); i++) {
+                        try {
+                            vehicle.addModel(bufferedReader.readLine(), Double.parseDouble(bufferedReader.readLine()));
+                        } catch (DuplicateModelNameException | NoSuchModelNameException e) {
+                            System.out.println(e.getMessage());
+                        }
                     }
                 }
             }
